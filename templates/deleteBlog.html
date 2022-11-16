@@ -1,0 +1,32 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<br><br>
+{% block body %}
+<section class="page-section" id="register">
+    <div class="container">
+        <!-- Register Section Heading-->
+        <br><br>
+        <h2 class="page-section-heading text-center  text-secondary mb-0"> Hi {{user}}... Delete the Blog...</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Sreate Task Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">   
+                <form class="form-group row " method="post"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <p style="font-size:20px ;">Are you sure want to Delete "{{object}}"?</p><br><br><br>
+                    <div  class='btn-group butn'>
+                        <input class="btn btn-outline-primary" type="submit" value="Delete">&nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-outline-primary" type="button" href="{% url 'viewBlog' %}">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

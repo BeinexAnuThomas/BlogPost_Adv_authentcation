@@ -1,0 +1,55 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<br><br>
+{% block body %}
+<section class="page-section" id="register">
+    <div class="container">
+        <!-- Register Section Heading-->
+        <br><br>
+        <h2 class="page-section-heading text-center  text-secondary mb-0"> Hi {{user}}... Here is the Blogs...<hr></h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Sreate Task Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7"> 
+                
+                {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                            <p id="message-timer" class="alert alert-success float-center text-center">{{message}}</p>
+                        {% endif %}
+                {% endfor %}
+                {% for i in blog %}
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-lg ">
+                                <div class="card" style="width: 54rem;">
+                                    <div class="card-body">   
+                                        <div class="row">    
+                                            <div class="col-md-6">
+                                                <img src="{{i.image.url}}" width="230" height="200">
+                                            </div>  
+                                            <div class="col-md-6">                              
+                                                <h4 class="card-title" style="color: rgb(18, 18, 18);">Title : {{i.title}}</h4><br>
+                                                <h6 class="card-subtitle mb-2 ">Author : {{i.author}}</h6>
+                                                <h6 class="card-subtitle text-muted mb-2 ">Date Posted : {{i.date_posted}}</h6>                                        
+                                                <p class="card-subtitle mb-2">Description : {{i.description}}</p><br>                                            
+                                                <a class="btn btn-outline-primary" type="button" href="{% url 'updateBlog' i.id %}" >Update</a>
+                                                <a class="btn btn-outline-primary" type="button" href="{% url 'deleteBlog' i.id %}" >Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><br><br>
+                            </div>
+                        </div>
+                    </div>       
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

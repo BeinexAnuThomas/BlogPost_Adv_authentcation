@@ -1,0 +1,35 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+ <!-- Register Section-->
+ <section class="page-section" id="register">
+    <div class="container">
+        <!-- Register Section Heading-->
+        <br><br>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Registaration Form</h2>
+        <p>Already, have an account? &nbsp;&nbsp;<a href="{% url 'login' %}"> Login</a></p>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Register Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">               
+                <form class="form-group row " method="post" style="font-size:20px;" >
+                    {% csrf_token %}          
+                   
+                    {{form|crispy}}
+                    
+                    <div  class='btn-group butn' style="margin-top:25px ;">                
+                        <input class="btn btn-outline-primary" type="submit" value="Register">&nbsp;&nbsp;&nbsp;
+                        <input class="btn btn-outline-primary" type="reset" value="Reset">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
