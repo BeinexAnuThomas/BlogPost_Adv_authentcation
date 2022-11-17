@@ -6,7 +6,7 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView,CreateView
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -27,6 +27,14 @@ def register(request):
     context={'form':form}
     return render(request,"register.html",context=context)
 
+class Register(CreateView):
+    def dispatch(self, request,*args,**kwargs):
+        if request.user.is_authenticated:
+            return redirect("home")
+        return super().dispatch(request,*args,**kwargs)
+    template_name = "register.html"
+    form_class = CreateUserForm
+    success_url = reverse_lazy('home')
 
 def login(request):
     form=LoginForm
